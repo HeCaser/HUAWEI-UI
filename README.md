@@ -4,4 +4,4 @@
 
 ![效果图](https://github.com/HeCaser/HUAWEI-UI/blob/master/01.gif)
 
-![CSDN](https://blog.csdn.net/hepann44/article/details/80736486)
+[CSDN博客](https://blog.csdn.net/hepann44/article/details/80736486)
