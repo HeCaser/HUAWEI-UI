@@ -10,6 +10,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
+/**
+ * 圆环刻度盘和圆点动画
+ */
 public class ProgressCircle extends View {
 
     Paint mPaint;
@@ -101,4 +104,5 @@ public class ProgressCircle extends View {
             invalidate();
         }
     }
+
 }

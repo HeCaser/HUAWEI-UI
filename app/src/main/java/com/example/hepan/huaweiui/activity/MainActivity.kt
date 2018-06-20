@@ -24,8 +24,10 @@ class MainActivity : AppCompatActivity() {
     private fun goActivity(pos: Int) {
         when (pos) {
             0 -> {
-                var sc = Intent(this, ProgressCircleActivity::class.java)
-                startActivity(sc)
+                startActivity(Intent(this, ProgressCircleActivity::class.java))
+            }
+            1 -> {
+                startActivity(Intent(this, DotRotateActivity::class.java))
             }
         }
     }
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     fun getList(): List<String> {
 
         var l = mutableListOf("加载\n小圆球")
+        l.add("等待界面\n多个小球旋转")
         return l
     }
 }
