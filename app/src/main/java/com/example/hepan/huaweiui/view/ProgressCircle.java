@@ -96,6 +96,7 @@ public class ProgressCircle extends View {
             }
         });
         animator.start();
+        setTag(animator);
     }
 
     public void setmProgress(int mProgress) {
@@ -105,4 +106,12 @@ public class ProgressCircle extends View {
         }
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        ValueAnimator valueAnimator = (ValueAnimator) getTag();
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+    }
 }
