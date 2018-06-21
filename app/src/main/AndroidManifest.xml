@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.ProgressCircleActivity"></activity>
+        <activity android:name=".activity.ProgressCircleActivity" />
+        <activity android:name=".activity.DotRotateActivity"></activity>
     </application>
 
 </manifest>
