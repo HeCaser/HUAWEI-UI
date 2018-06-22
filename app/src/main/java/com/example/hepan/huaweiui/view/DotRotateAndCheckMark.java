@@ -65,7 +65,7 @@ public class DotRotateAndCheckMark extends View {
             public void run() {
                 startCircleRun();
             }
-        }, 1000);
+        }, 800);
         radio[0] = 1f;
         radio[1] = 1.2f;
         radio[2] = 1.5f;
