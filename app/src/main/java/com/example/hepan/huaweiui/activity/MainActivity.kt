@@ -29,6 +29,9 @@ class MainActivity : AppCompatActivity() {
             1 -> {
                 startActivity(Intent(this, DotRotateActivity::class.java))
             }
+            2 -> {
+                startActivity(Intent(this, WaveViewActivity::class.java))
+            }
         }
     }
 
@@ -36,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         var l = mutableListOf("加载\n小圆球")
         l.add("等待界面\n多个小球旋转")
+        l.add("手机管家-剩余\n波浪线电量")
         return l
     }
 }
