@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.ProgressCircleActivity" />
-        <activity android:name=".activity.DotRotateActivity"></activity>
+        <activity android:name=".activity.DotRotateActivity" />
+        <activity android:name=".activity.WaveViewActivity"></activity>
     </application>
 
 </manifest>
