@@ -4,8 +4,10 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -36,7 +38,7 @@ public class WaveView extends View {
     private void init() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStrokeWidth(4);
-        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(Color.GRAY);
 
         mPath = new Path();
@@ -46,7 +48,7 @@ public class WaveView extends View {
             public void run() {
                 startValueAnimation();
             }
-        }, 1000);
+        }, 300);
     }
 
     @Override
@@ -55,24 +57,42 @@ public class WaveView extends View {
         mWidth = getWidth();
         mHeight = getHeight();
 
-        canvas.translate(mWidth * mPercent, 0);
+        int startHeight = 100;
+        for (int i = 0; i < 3; i++) {
+            mPercent = mPercent + 0.4f * i;
+            mPercent = mPercent % 1;
+            canvas.save();
+            canvas.translate(mWidth * mPercent, 0);
 
-        // 在画布的 x=0 处画一个点,方便理解原理
-        mPaint.setColor(Color.RED);
-        mPaint.setStyle(Paint.Style.FILL);
-        canvas.drawCircle(0,60,10,mPaint);
+            //画波浪线
+            mPath.reset();
+            mPath.moveTo(-mWidth, startHeight);
+            mPath.quadTo(-mWidth * 0.75f, startHeight + 80, -mWidth * 0.5f, startHeight);
+            mPath.quadTo(-mWidth * 0.25f, startHeight-80, 0, startHeight);
+            mPath.quadTo(mWidth * 0.25f, startHeight + 80, mWidth * 0.5f, startHeight);
+            mPath.quadTo(mWidth * 0.75f, startHeight-80, mWidth, startHeight);
 
-        //画波浪线
-        mPaint.setColor(Color.GRAY);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPath.reset();
-        mPath.moveTo(-mWidth,60);
-        mPath.quadTo(-mWidth*0.75f,120,-mWidth*0.5f,60);
-        mPath.quadTo(-mWidth*0.25f,0,0,60);
-        mPath.quadTo(mWidth*0.25f,120,mWidth*0.5f,60);
-        mPath.quadTo(mWidth*0.75f,0,mWidth,60);
+            mPath.lineTo(mWidth, mHeight);
+            mPath.lineTo(-mWidth, mHeight);
+            mPath.close();
 
-        canvas.drawPath(mPath, mPaint);
+            Shader shader = new LinearGradient(0, 0, 0, mHeight,
+                    Color.argb(255, 129, 186, 248),
+                    Color.argb(255, 135, 222, 250), Shader.TileMode.CLAMP);
+            mPaint.setShader(shader);
+            if (i == 0) {
+                mPaint.setAlpha(50);
+            }
+            if (i == 1) {
+                mPaint.setAlpha(100);
+            }
+            if (i == 2) {
+                mPaint.setAlpha(150);
+            }
+            canvas.drawPath(mPath, mPaint);
+            canvas.restore();
+        }
+
     }
 
     private void startValueAnimation() {
