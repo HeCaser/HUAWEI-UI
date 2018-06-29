@@ -1,1 +1,10 @@
 include ':app'
+
+
+gradle.ext.supportLibraryVersion = '27.1.1'
+gradle.ext.buildToolsVersion = '27.0.3'
+gradle.ext.versionCode = 1
+gradle.ext.versionName = "1.0"
+gradle.ext.compileSdkVersion = 27
+gradle.ext.minSdkVersion = 14
+gradle.ext.targetSdkVersion = 27
